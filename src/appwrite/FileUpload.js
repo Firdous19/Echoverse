@@ -30,8 +30,7 @@ class AppwriteFileUpload {
   async deleteFile(fileId) {
     try {
       const response = await this.storage.deleteFile(
-        conf,
-        appwriteBucketId,
+        conf.appwriteBucketId,
         fileId
       );
       return response;

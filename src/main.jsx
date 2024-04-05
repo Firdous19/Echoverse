@@ -3,7 +3,15 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, Login, SignUp, AddPost, Post } from "./pages";
+import {
+  Home,
+  Login,
+  SignUp,
+  AddPost,
+  Post,
+  EditPost,
+  AllPosts,
+} from "./pages";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 
@@ -30,6 +38,18 @@ const BrowserRouter = createBrowserRouter([
       },
       {
         path: "/post/:id",
+        element: <Post />,
+      },
+      {
+        path: "/edit-post/:id",
+        element: <EditPost />,
+      },
+      {
+        path: "/all-posts",
+        element: <AllPosts />,
+      },
+      {
+        path: "/all-posts/post/:id",
         element: <Post />,
       },
     ],

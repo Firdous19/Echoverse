@@ -26,8 +26,8 @@ export default function Header() {
     },
     {
       id: 4,
-      name: "posts",
-      link: "/posts",
+      name: "All-posts",
+      link: "/all-posts",
       show: userStatus,
     },
     {

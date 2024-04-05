@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { appwritePost, appwriteFileUpload } from "../appwrite";
 import { Button } from "../components";
 import Container from "../Container/Container";
+import parse from "html-react-parser";
 
 export default function Post() {
   const { id: slug } = useParams();
@@ -16,6 +17,7 @@ export default function Post() {
       .then((res) => {
         setPost(res);
         console.log("Post :: ", res);
+        console.log("post ::", typeof post.content);
       })
       .catch((err) => {
         console.error("Post Fetch Failed :: ", err);
@@ -38,7 +40,6 @@ export default function Post() {
 
   return (
     <div>
-      <h1>Post</h1>
       <div>
         <Container>
           <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
@@ -62,8 +63,9 @@ export default function Post() {
           <div className="w-full mb-6">
             <h1 className="text-2xl font-bold">{post.title}</h1>
           </div>
-          {/* <div className="browser-css">{parse(post.content)}</div> */}
-          <p>{post.content}</p>
+          <div>
+            <div>{parse(post.content)}</div>
+          </div>
         </Container>
       </div>
     </div>

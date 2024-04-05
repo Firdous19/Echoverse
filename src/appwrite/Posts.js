@@ -1,5 +1,5 @@
 import conf from "../configurations/Config";
-import { Client, Databases } from "appwrite";
+import { Client, Databases, Query } from "appwrite";
 
 class AppwritePost {
   client = new Client();
@@ -47,7 +47,7 @@ class AppwritePost {
     }
   }
 
-  async updatePost({ title, slug, content, featuredImage, status, userId }) {
+  async updatePost(slug, { title, content, featuredImage, status, userId }) {
     try {
       const post = await this.databases.updateDocument(
         conf.appwriteDatabaseId,
@@ -61,6 +61,7 @@ class AppwritePost {
           userId,
         }
       );
+      return post;
     } catch (error) {
       console.error("Appwrite :: Post Update Failed", error);
     }
@@ -79,12 +80,12 @@ class AppwritePost {
     }
   }
 
-
-  async getPosts() {
+  async getPosts(queries = [Query.equal("status", "Active")]) {
     try {
       const posts = await this.databases.listDocuments(
         conf.appwriteDatabaseId,
-        conf.appwriteCollectionId
+        conf.appwriteCollectionId,
+        queries
       );
 
       return posts;

@@ -18,7 +18,7 @@ export default function Footer() {
               <ul>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-white/50 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Features
@@ -26,7 +26,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Pricing
@@ -34,7 +34,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Affiliate Program
@@ -42,7 +42,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Press Kit
@@ -59,7 +59,7 @@ export default function Footer() {
               <ul>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Account
@@ -67,7 +67,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Help
@@ -75,7 +75,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Contact Us
@@ -83,7 +83,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Customer Support
@@ -100,7 +100,7 @@ export default function Footer() {
               <ul>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70  hover:text-gray-700"
                     to="/"
                   >
                     Terms &amp; Conditions
@@ -108,7 +108,7 @@ export default function Footer() {
                 </li>
                 <li className="mb-4">
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Privacy Policy
@@ -116,7 +116,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
+                    className=" text-base font-medium text-white/70 hover:text-gray-700"
                     to="/"
                   >
                     Licensing
@@ -127,7 +127,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <p>&copy; 2021</p>
+      <p className="text-white/70">&copy; 2021</p>
     </footer>
   );
 }

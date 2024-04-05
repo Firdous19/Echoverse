@@ -1,3 +1,5 @@
-export default function Container({ children }) {
-  return <div className="max-w-[90%] mx-auto my-10">{children}</div>;
+export default function Container({ children, className = "" }) {
+  return (
+    <div className={`max-w-[90%] mx-auto my-10 ${className}`}>{children}</div>
+  );
 }

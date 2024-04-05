@@ -13,8 +13,9 @@ export default function Home() {
       appwritePost
         .getPosts()
         .then((posts) => {
-          setPosts(posts.documents);
-          console.log(posts.documents);
+          console.log(posts);
+          // setPosts(posts.documents);
+          // console.log(posts.documents);
         })
         .catch((error) => {
           console.error("Post Fetch Failed", error);

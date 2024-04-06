@@ -10,7 +10,7 @@ export default function AllPosts() {
     appwritePost
       .getPosts([])
       .then((posts) => {
-        console.log("Posts",posts);
+        console.log("Posts", posts);
         setPosts(posts.documents);
       })
       .catch((err) => {
@@ -23,8 +23,10 @@ export default function AllPosts() {
       <div className="text-4xl bg-black text-center text-white py-10">
         <h1>Your Posts</h1>
       </div>
-      <div>
-        <PostCard posts={posts} />
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mt-4">
+        {posts.map((post) => (
+          <PostCard key={post.$id} post={post} />
+        ))}
       </div>
     </Container>
   );

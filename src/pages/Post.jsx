@@ -3,12 +3,14 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { appwritePost, appwriteFileUpload } from "../appwrite";
 import { Button } from "../components";
 import Container from "../Container/Container";
+import { Parser } from "html-to-react";
 import parse from "html-react-parser";
 
 export default function Post() {
   const { id: slug } = useParams();
   const [post, setPost] = useState({});
   const navigate = useNavigate();
+  // const parse = new Parser();
 
   useEffect(() => {
     console.log("Slug :: ", slug);
@@ -64,10 +66,16 @@ export default function Post() {
               </Button>
             </div>
           </div>
-          <div className="w-full mb-6">
-            <h1 className="text-2xl font-bold">{post.title}</h1>
+          <div className="p-5">
+            <div className="w-full mb-6">
+              <h1 className="text-3xl font-bold">{post.title}</h1>
+            </div>
+            <div className="text-lg">
+              <p>
+                {typeof post.content === "string" ? parse(post.content) : ""}
+              </p>
+            </div>
           </div>
-          <div>{/* <div>{parse(post.content)}</div> */}</div>
         </Container>
       </div>
     </div>

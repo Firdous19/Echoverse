@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { logout } from "../store/authSlice";
 import appwriteAuth from "../appwrite/Auth";
+import {  useNavigate } from "react-router-dom";
 
 export default function LogOutBtn() {
   const dispath = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     const deletedSession = await appwriteAuth.logout();
@@ -12,6 +14,7 @@ export default function LogOutBtn() {
     }
     dispath(logout());
     window.alert("Logged out Successfully");
+    navigate("/");
   };
 
   return (

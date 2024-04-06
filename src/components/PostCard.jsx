@@ -1,10 +1,11 @@
 import { appwriteFileUpload } from "../appwrite";
 import { Link } from "react-router-dom";
 
-export default function PostCard({ posts }) {
+export default function PostCard({ post }) {
   return (
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mt-4">
-      {posts.map((post) => (
+    // console.log("Post :: ", post),
+    <div>
+      {/* {posts.map((post) => ( */}
         <Link to={`post/${post.$id}`} key={post.$id}>
           <div className="border p-6 space-y-5 shadow-lg rounded-lg">
             <h2 className="text-3xl font-semibold">{post.title}</h2>
@@ -15,7 +16,7 @@ export default function PostCard({ posts }) {
             />
           </div>
         </Link>
-      ))}
+      {/* ))} */}
     </div>
   );
 }

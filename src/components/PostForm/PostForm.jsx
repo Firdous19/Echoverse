@@ -42,14 +42,6 @@ export default function PostForm({ post }) {
       }
       console.log("File Upload:", response);
 
-      const deleteFile = await appwriteFileUpload.deleteFile(
-        post.featuredImage
-      );
-
-      if (!deleteFile) {
-        throw new Error("File Delete Failed");
-      }
-
       const postData = await appwritePost.updatePost(data.slug, {
         ...data,
         featuredImage: response.$id,
@@ -58,6 +50,14 @@ export default function PostForm({ post }) {
 
       if (!postData) {
         throw new Error("Post Creation Failed");
+      }
+
+      const deleteFile = await appwriteFileUpload.deleteFile(
+        post.featuredImage
+      );
+
+      if (!deleteFile) {
+        throw new Error("File Delete Failed");
       }
 
       console.log("Post Updated Successfully", postData);
@@ -121,6 +121,7 @@ export default function PostForm({ post }) {
     console.log("File", file);
   }, []);
 
+  // console.log("Type", typeof post?.content);
   return (
     <form
       className="grid grid-cols-12 gap-10"
@@ -154,7 +155,7 @@ export default function PostForm({ post }) {
                 message: "Content is required",
               },
             })}
-            defaultValue={getValues("content") || ""}
+            defaultValue={getValues("content").toString() || ""}
           />
           <p className="text-red-500">
             {errors.content ? `*${errors.title.content}` : ""}

@@ -80,12 +80,13 @@ class AppwritePost {
     }
   }
 
-  async getPosts(queries = [Query.equal("status", "Active")]) {
+  async getPosts(userId) {
     try {
       const posts = await this.databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         // queries
+        // [Query.equal("userId", userId)]
       );
 
       return posts;

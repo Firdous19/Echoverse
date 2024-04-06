@@ -113,7 +113,7 @@ export default function SignIn() {
             </p>
           </div>
 
-          <Button type="submit">Sign In</Button>
+          <Button className="bg-blue-700 px-4" type="submit">Sign In</Button>
         </form>
       </div>
     </>

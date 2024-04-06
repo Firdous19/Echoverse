@@ -14,6 +14,7 @@ import {
 } from "./pages";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
+import { AuthLayout } from "./components";
 
 const BrowserRouter = createBrowserRouter([
   {
@@ -26,31 +27,59 @@ const BrowserRouter = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
+        ),
       },
       {
         path: "/signup",
-        element: <SignUp />,
+        element: (
+          <AuthLayout authentication={false}>
+            <SignUp />
+          </AuthLayout>
+        ),
       },
       {
         path: "/add-post",
-        element: <AddPost />,
+        element: (
+          <AuthLayout authentication={true}>
+            <AddPost />
+          </AuthLayout>
+        ),
       },
       {
         path: "/post/:id",
-        element: <Post />,
+        element: (
+          <AuthLayout authentication={true}>
+            <Post />
+          </AuthLayout>
+        ),
       },
       {
         path: "/edit-post/:id",
-        element: <EditPost />,
+        element: (
+          <AuthLayout authentication={true}>
+            <EditPost />
+          </AuthLayout>
+        ),
       },
       {
         path: "/all-posts",
-        element: <AllPosts />,
+        element: (
+          <AuthLayout authentication={true}>
+            <AllPosts />
+          </AuthLayout>
+        ),
       },
       {
         path: "/all-posts/post/:id",
-        element: <Post />,
+        element: (
+          <AuthLayout authentication={true}>
+            <Post />
+          </AuthLayout>
+        ),
       },
     ],
   },

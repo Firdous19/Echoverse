@@ -85,7 +85,7 @@ class AppwritePost {
       const posts = await this.databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        queries
+        // queries
       );
 
       return posts;

@@ -15,7 +15,15 @@ export default function PostForm({ post }) {
       status: post?.status || "Active",
     },
   });
-  const { register, handleSubmit, watch, setValue, control, getValues } = form;
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    control,
+    getValues,
+    formState: { errors },
+  } = form;
   const userData = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
@@ -86,15 +94,6 @@ export default function PostForm({ post }) {
     }
   };
 
-  // useEffect(() => {
-  //   const file = appwriteFileUpload.getFile(post.featuredImage);
-  //   if (!file) {
-  //     throw new Error("File Not Found");
-  //   }
-  //   console.log("File", file);
-  //   setValue("featuredImage", file);
-  // }, []);
-
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string")
       return value
@@ -116,37 +115,71 @@ export default function PostForm({ post }) {
     return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
 
+  useEffect(() => {
+    if (!post) return;
+    const file = appwriteFileUpload.getFilePreview(post.featuredImage);
+    console.log("File", file);
+  }, []);
+
   return (
     <form
       className="grid grid-cols-12 gap-10"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="col-span-8 space-y-6">
-        <Input
-          label="Title"
-          type="=text"
-          placeholder="Enter the title"
-          {...register("title")}
-        />
+        <div className="space-y-3">
+          <Input
+            label="Title"
+            type="=text"
+            placeholder="Enter the title"
+            {...register("title", {
+              required: {
+                value: true,
+                message: "Title is required",
+              },
+            })}
+          />
+          <p className="text-red-500">
+            {errors.title ? `*${errors.title.message}` : ""}
+          </p>
+        </div>
         <Input label="Slug" type="=text" name="slug" {...register("slug")} />
-        <main>
+        <main className="space-y-2">
           <RTE
             name="content"
             control={control}
-            {...register("content")}
+            {...register("content", {
+              required: {
+                value: true,
+                message: "Content is required",
+              },
+            })}
             defaultValue={getValues("content") || ""}
           />
+          <p className="text-red-500">
+            {errors.content ? `*${errors.title.content}` : ""}
+          </p>
         </main>
       </div>
 
       <div className="col-span-4 space-y-6">
-        <Input
-          label="Featured Image"
-          type="file"
-          accept="image/png, image/jpg, image/jpeg, image/gif"
-          placeholder="Upload your File"
-          {...register("featuredImage")}
-        />
+        <div className="space-y-2">
+          <Input
+            label="Featured Image"
+            type="file"
+            accept="image/png, image/jpg, image/jpeg, image/gif"
+            placeholder="Upload your File"
+            {...register("featuredImage", {
+              required: {
+                value: true,
+                message: "Featured Image is required",
+              },
+            })}
+          />
+          <p className="text-red-500">
+            {errors.featuredImage ? `*${errors.featuredImage.message}` : ""}
+          </p>
+        </div>
         {post && (
           <div>
             <img
@@ -162,7 +195,7 @@ export default function PostForm({ post }) {
           {...register("status")}
         />
 
-        <Button type="Submit" className="text-center w-full">
+        <Button type="Submit" className="text-center w-full bg-blue-700">
           {post ? "Update Post" : "Create Post"}
         </Button>
       </div>

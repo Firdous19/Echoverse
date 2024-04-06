@@ -2,15 +2,15 @@ import { NavLink, Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-800 py-4 text-center">
+    <footer className="bg-slate-900 py-4 text-center ">
       <div className="flex justify-between max-w-[90%] mx-auto">
-        <div className="lg:w-2/12">
-          <NavLink to="/">
-            <img className="size-20" src="/images/logo.jpg" alt="" />
-          </NavLink>
+        <div className="lg:w-2/12 ">
+          {/* <NavLink to="/">
+            <h1>Echoverse</h1>
+          </NavLink> */}
         </div>
         <div className="flex lg-10/12">
-          <div className="w-full p-6">
+          <div className="w-full p-6 max-[422px]:text-xs">
             <div className="h-full">
               <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-400 tracking-widest">
                 Company

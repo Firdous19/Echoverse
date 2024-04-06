@@ -6,7 +6,6 @@ import { appwriteAuth } from "../appwrite";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 export default function SignUp() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -118,7 +117,9 @@ export default function SignUp() {
             </p>
           </div>
 
-          <Button type="submit">Sign up</Button>
+          <Button className="bg-blue-700 px-4 py" type="submit">
+            Sign up
+          </Button>
         </form>
       </div>
     </>

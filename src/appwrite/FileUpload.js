@@ -48,6 +48,19 @@ class AppwriteFileUpload {
     }
   }
 
+  async updateFile(fileId, file) {
+    try {
+      const response = await this.storage.updateFile(
+        conf.appwriteBucketId,
+        fileId,
+        file
+      );
+      return response;
+    } catch (error) {
+      console.error("File Update error :: Appwrite ::", error);
+    }
+  }
+
   getFilePreview(fileId) {
     try {
       console.log("fileId Appwrite ::", fileId);

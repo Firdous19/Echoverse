@@ -42,7 +42,7 @@ export default function Post() {
     <div>
       <div>
         <Container>
-          <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+          <div className="group w-full flex justify-center mb-4 relative border rounded-xl p-2">
             <img
               src={appwriteFileUpload.getFile(post.featuredImage)}
               alt={post.title}
@@ -51,21 +51,23 @@ export default function Post() {
 
             <div className="absolute right-6 top-6">
               <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-3">
-                  Edit
+                <Button className="mr-3 opacity-0 group-hover:opacity-100 transition-all duration-200">
+                  <img className="size-8" src="/images/pen.png" alt="pen" />
                 </Button>
               </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
-                Delete
+              <Button onClick={deletePost}>
+                <img
+                  className="size-8 bg-transparent opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  src="/images/bin.png"
+                  alt="pen"
+                />
               </Button>
             </div>
           </div>
           <div className="w-full mb-6">
             <h1 className="text-2xl font-bold">{post.title}</h1>
           </div>
-          <div>
-            <div>{parse(post.content)}</div>
-          </div>
+          <div>{/* <div>{parse(post.content)}</div> */}</div>
         </Container>
       </div>
     </div>

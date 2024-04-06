@@ -19,8 +19,8 @@ export default function AllPosts() {
   }, []);
 
   return (
-    <Container className="space-y-7">
-      <div className="text-3xl">
+    <Container className="space-y-10">
+      <div className="text-4xl bg-black text-center text-white py-10">
         <h1>Your Posts</h1>
       </div>
       <div>

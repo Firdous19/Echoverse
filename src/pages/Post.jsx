@@ -5,24 +5,30 @@ import { Button } from "../components";
 import Container from "../Container/Container";
 import { Parser } from "html-to-react";
 import parse from "html-react-parser";
+import { set } from "react-hook-form";
+import Loader from "react-js-loader";
 
 export default function Post() {
   const { id: slug } = useParams();
   const [post, setPost] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   // const parse = new Parser();
 
   useEffect(() => {
     console.log("Slug :: ", slug);
+    setLoading(true);
     appwritePost
       .getPost(slug)
       .then((res) => {
         setPost(res);
         console.log("Post :: ", res);
         console.log("post ::", typeof post.content);
+        setLoading(false);
       })
       .catch((err) => {
         console.error("Post Fetch Failed :: ", err);
+        setLoading(false);
       });
   }, []);
 
@@ -78,6 +84,16 @@ export default function Post() {
           </div>
         </Container>
       </div>
+      {loading && (
+        <div className="absolute top-0 left-0 bg-slate-100 bg-opacity-40 w-full h-full flex justify-center items-center">
+          <Loader
+            type="spinner-cub"
+            bgColor={"#000"}
+            //title={"Loading..."}
+            size={75}
+          />
+        </div>
+      )}
     </div>
   );
 }

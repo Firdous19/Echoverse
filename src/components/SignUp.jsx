@@ -1,13 +1,15 @@
 import { Input } from "../components";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { Button } from "../components";
 import { appwriteAuth } from "../appwrite";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loader from "react-js-loader";
 
 export default function SignUp() {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const form = useForm();
@@ -19,16 +21,20 @@ export default function SignUp() {
 
   const onSubmit = async (data) => {
     try {
+      setError("");
+      setLoading(true);
       const user = await appwriteAuth.signUp(data);
       if (!user) {
         throw new Error("Sign up failed");
       }
       console.log("Sign up success", user);
       window.alert("Sign up success");
+      setLoading(false);
       navigate("/login");
     } catch (error) {
       console.log("Sign up Error", error);
       setError(error.message);
+      setLoading(false);
     }
   };
 
@@ -121,6 +127,16 @@ export default function SignUp() {
             Sign up
           </Button>
         </form>
+        {loading && (
+          <div className="absolute top-0 left-0 bg-slate-100 bg-opacity-40 w-full h-full flex justify-center items-center">
+            <Loader
+              type="spinner-cub"
+              bgColor={"#000"}
+              //title={"Loading..."}
+              size={75}
+            />
+          </div>
+        )}
       </div>
     </>
   );

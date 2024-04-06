@@ -7,9 +7,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
+import Loader from "react-js-loader";
 
 export default function SignIn() {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const form = useForm();
@@ -24,6 +26,7 @@ export default function SignIn() {
   const onSubmit = async (data) => {
     try {
       setError("");
+      setLoading(true);
       const session = await appwriteAuth.login(data);
       if (!session) {
         throw new Error("Sign in failed");
@@ -35,10 +38,12 @@ export default function SignIn() {
       }
 
       dispatch(login(user));
-      window.alert("Sign in success");
+      //window.alert("Sign in success");
       console.log("User", user);
+      setLoading(false);
       navigate("/");
     } catch (error) {
+      setLoading(false);
       console.log("Sign in Error", error);
       setError("Invalid Credentials");
     }
@@ -113,9 +118,21 @@ export default function SignIn() {
             </p>
           </div>
 
-          <Button className="bg-blue-700 px-4" type="submit">Sign In</Button>
+          <Button className="bg-blue-700 px-4" type="submit">
+            Sign In
+          </Button>
         </form>
       </div>
+      {loading && (
+        <div className="absolute top-0 left-0 bg-slate-100 bg-opacity-40 w-full h-full flex justify-center items-center">
+          <Loader
+            type="spinner-cub"
+            bgColor={"#000"}
+            title={"Loading..."}
+            size={75}
+          />
+        </div>
+      )}
     </>
   );
 }

@@ -11,6 +11,7 @@ import PostForm from "./PostForm/PostForm";
 import Select from "./Select";
 import PostCard from "./PostCard";
 import AuthLayout from "./AuthLayout";
+import ToasterComp from "./ToasterComp";
 
 export {
   Header,
@@ -24,4 +25,5 @@ export {
   Select,
   PostCard,
   AuthLayout,
+  ToasterComp,
 };

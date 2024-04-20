@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { appwriteFileUpload, appwritePost } from "../../appwrite";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 export default function PostForm({ post }) {
   const form = useForm({
@@ -61,7 +62,8 @@ export default function PostForm({ post }) {
       }
 
       console.log("Post Updated Successfully", postData);
-      window.alert("Post Updated successfully");
+      // window.alert("Post Updated successfully");
+      toast.success("Post Updated successfully");
       navigate(`/post/${postData.$id}`);
     } else {
       console.log(data);
@@ -89,7 +91,8 @@ export default function PostForm({ post }) {
       }
 
       console.log("Post Successfully Created", postData);
-      window.alert("Post Successfully Created");
+      // window.alert("Post Successfully Created");
+      toast.success("Post Successfully Created");
       navigate(`/post/${postData.$id}`);
     }
   };

@@ -57,6 +57,15 @@ class Auth {
       console.log("Appwrite :: Get Account Error", error);
     }
   }
+
+  async createEmailVerification(email) {
+    try {
+      const response = await this.account.createVerification(email);
+      return response;
+    } catch (error) {
+      console.log("Appwrite :: Create Email Verification Error", error);
+    }
+  }
 }
 
 const appwriteAuth = new Auth();

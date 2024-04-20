@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import Loader from "react-js-loader";
+import toast from "react-hot-toast";
 
 export default function SignIn() {
   const [error, setError] = useState("");
@@ -41,11 +42,13 @@ export default function SignIn() {
       //window.alert("Sign in success");
       console.log("User", user);
       setLoading(false);
+      toast.success("Sign in success");
       navigate("/");
     } catch (error) {
       setLoading(false);
       console.log("Sign in Error", error);
       setError("Invalid Credentials");
+      toast.error("Invalid Credentials");
     }
   };
 

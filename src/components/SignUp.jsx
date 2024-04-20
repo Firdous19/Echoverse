@@ -6,6 +6,7 @@ import { appwriteAuth } from "../appwrite";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "react-js-loader";
+import toast from "react-hot-toast";
 
 export default function SignUp() {
   const [error, setError] = useState("");
@@ -28,13 +29,22 @@ export default function SignUp() {
         throw new Error("Sign up failed");
       }
       console.log("Sign up success", user);
-      window.alert("Sign up success");
+      // window.alert("Sign up success");
+      // window.alert("Sign up success. Please check your email for verification");
+      // const emailVerification = await appwriteAuth.createEmailVerification(
+      //   user.email
+      // );
+      // console.log("Email Verification", emailVerification);
       setLoading(false);
+      toast.success(
+        "Sign up success. Please check your email for verification"
+      );
       navigate("/login");
     } catch (error) {
       console.log("Sign up Error", error);
       setError(error.message);
       setLoading(false);
+      toast.error(error.message);
     }
   };
 

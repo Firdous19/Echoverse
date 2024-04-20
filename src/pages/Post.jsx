@@ -7,6 +7,7 @@ import { Parser } from "html-to-react";
 import parse from "html-react-parser";
 import { set } from "react-hook-form";
 import Loader from "react-js-loader";
+import toast from "react-hot-toast";
 
 export default function Post() {
   const { id: slug } = useParams();
@@ -39,10 +40,12 @@ export default function Post() {
       .deletePost(post.$id)
       .then((res) => {
         console.log("Post Deleted :: ", res);
+        toast.success("Post Deleted Successfully");
         navigate("/");
       })
       .catch((err) => {
         console.error("Post Delete Failed :: ", err);
+        toast.error("Post Delete Failed");
       });
   };
 
